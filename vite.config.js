@@ -11,6 +11,8 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        react(),
+        react({
+            include: '**/*.jsx',  // Asegúrate de que los archivos JSX estén incluidos
+        }),
     ],
 });
