@@ -1,0 +1,21 @@
+.col-id {
+    width: 10%;
+}
+
+.col-shortened {
+    width: 20%;
+}
+
+.col-original {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+.col-actions {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}

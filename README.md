@@ -1,66 +1,281 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# URL Shortener Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+This project is a URL shortener application developed with Laravel on the backend and React on the frontend. It allows users to shorten long URLs, list all shortened URLs, and redirect to the original URLs using the shortened ones.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Shorten long URLs
+- List all shortened URLs
+- Redirect to original URLs
+- API documentation with Swagger
+- Automated testing with PHPUnit
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- Laravel
+- React
+- Axios
+- Bootstrap
+- Swagger for API documentation
+- PHPUnit for testing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 8.1
+- Composer
+- Node.js
+- NPM or Yarn
+- MySQL or any other database compatible with Laravel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation for Develoment
 
-## Laravel Sponsors
+Follow these steps to install and run the project locally:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone the repository:
 
-### Premium Partners
+    ```bash
+    git clone https://github.com/your-username/url-shortener.git
+    cd url-shortener
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. Install PHP dependencies with Composer:
+
+    ```bash
+    composer install
+    ```
+
+3. Install Node.js dependencies with NPM or Yarn:
+
+    ```bash
+    npm install
+    # or if you use Yarn
+    yarn install
+    ```
+
+4. Copy the `.env.example` file to `.env` and set up your database:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    Make sure to configure the necessary environment variables in the `.env` file.
+
+5. Generate the application key:
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. Run the migrations to create the tables in the database:
+
+    ```bash
+    php artisan migrate
+    ```
+
+7. Compile the frontend assets:
+
+    ```bash
+    npm run dev
+    # or if you use Yarn
+    yarn dev
+    ```
+
+8. Start the development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+## Installation for Production
+
+Follow these steps to install and run the project in a production environment:
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/your-username/url-shortener.git
+    cd url-shortener
+    ```
+
+2. **Install PHP dependencies with Composer:**
+
+    ```bash
+    composer install --optimize-autoloader --no-dev
+    ```
+
+3. **Install Node.js dependencies with NPM or Yarn:**
+
+    ```bash
+    npm install --production
+    # or if you use Yarn
+    yarn install --production
+    ```
+
+4. **Copy the `.env.example` file to `.env` and set up your database:**
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    Make sure to configure the necessary environment variables in the `.env` file.
+
+5. **Generate the application key:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. **Run the migrations to create the tables in the database:**
+
+    ```bash
+    php artisan migrate --force
+    ```
+
+7. **Compile the frontend assets:**
+
+    ```bash
+    npm run build
+    # or if you use Yarn
+    yarn run build
+    ```
+
+8. **Configure Apache to serve the application:**
+
+    Make sure you have Apache configured to point to your application's path. Here's a basic Apache configuration example:
+
+    ```apache
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/url-shortener/public
+
+        <Directory /var/www/html/url-shortener>
+            AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    ```
+
+9. **Ensure proper permissions for storage and cache:**
+
+    ```bash
+    sudo chown -R www-data:www-data /var/www/html/url-shortener/storage
+    sudo chown -R www-data:www-data /var/www/html/url-shortener/bootstrap/cache
+    ```
+
+10. **Restart Apache to apply the changes:**
+
+    ```bash
+    sudo systemctl restart httpd
+    ```
+
+With these steps, your application should be up and running in a production environment. 
+
+## Routes
+
+### Web Routes
+
+```php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
+
+// Route for the welcome page
+Route::get('/', function () {
+    return view('index');
+});
+
+// Catch-all route for React views (GET /*)
+Route::view('/{path?}', 'app')->where('path', '.*');
+
+```
+
+### API Routes
+
+```php
+use App\Http\Controllers\UrlController;
+
+// Route to get the list of shortened URLs (GET /api/v1/urls)
+Route::get('/api/v1/urls', [UrlController::class, 'index']);
+
+// Route to shorten a URL (POST /api/v1/shorten)
+Route::post('/api/v1/shorten', [UrlController::class, 'shorten']);
+
+// Route to redirect a shortened URL (GET /{shortened})
+Route::get('/{shortened}', [UrlController::class, 'redirect']);
+```
+
+## Project Structure
+
+resources/
+  js/
+    components/
+      App.jsx
+      Pagination.jsx
+      UrlForm.jsx
+      UrlList.jsx
+      UrlShorter.jsx
+routes/
+  web.php
+  api.php
+app/
+  Http/
+    Controllers/
+      UrlController.php
+tests/
+  Feature/
+    UrlShortenerTest.php
+
+### API Documentation
+
+The API documentation is done with Swagger. Follow these steps to publish and generate the Swagger documentation:
+
+1. **Publish the Swagger configuration:**
+
+    ```bash
+    php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+    ```
+
+2. **Generate the Swagger documentation:**
+
+    ```bash
+    php artisan l5-swagger:generate
+    ```
+
+3. **Access the documentation:**
+
+    Open your browser and navigate to the following URL to view the API documentation:
+
+    ```url
+    http://your-domain/api/documentation
+    ```
+
+Replace `your-domain` with your actual domain or IP address where the application is hosted.
+
+With these steps, you will have access to the Swagger-generated API documentation for your project.
+
+### Running Tests
+
+To run automated tests with PHPUnit, use the following command:
+
+```bash
+php artisan test
+```
 
 ## Contributing
+Contributions are welcome! If you want to contribute, please follow these steps:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Fork the project
+Create a new branch (git checkout -b feature/new-feature)
+Make your changes and commit them (git commit -am 'Add new feature')
+Push the changes to your branch (git push origin feature/new-feature)
+Open a Pull Request
 
 ## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+Feel free to adjust any details such as URLs or paths as needed!
+```

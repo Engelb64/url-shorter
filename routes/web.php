@@ -15,7 +15,7 @@ use App\Http\Controllers\UrlController;
 
 // Route for the welcome page
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 /*
@@ -40,4 +40,16 @@ Route::get('/{shortened}', [UrlController::class, 'redirect']);
 // Route to delete a URL (DELETE /api/v1/urls/{id})
 Route::delete('/api/v1/urls/{id}', [UrlController::class, 'destroy']);
 
+/*
+|--------------------------------------------------------------------------
+| Catch-All Route for React
+|--------------------------------------------------------------------------
+|
+| Catch-all route to handle React views. This route ensures that any URL
+| not handled by the previous routes is directed to the main view of the
+| React application.
+|
+*/
 
+// Catch-all route for React views (GET /*)
+Route::view('/{path?}', 'app')->where('path', '.*');
