@@ -1,5 +1,9 @@
 # URL Shortener Project
 
+## Demo
+
+You can see a live demonstration of the project at [http://3.142.90.17/](http://3.142.90.17/).
+
 ## Description
 
 This project is a URL shortener application developed with Laravel on the backend and React on the frontend. It allows users to shorten long URLs, list all shortened URLs, and redirect to the original URLs using the shortened ones.
