@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route for the welcome page
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Routes for the URL Shortener API. These routes allow for URL shortening,
+| listing all shortened URLs, and redirecting shortened URLs.
+|
+*/
+
+// Route to get the list of shortened URLs (GET /api/v1/urls)
+Route::get('/api/v1/urls', [UrlController::class, 'index']);
+
+// Route to shorten a URL (POST /api/v1/shorten)
+Route::post('/api/v1/shorten', [UrlController::class, 'shorten']);
+
+// Route to redirect a shortened URL (GET /{shortened})
+Route::get('/{shortened}', [UrlController::class, 'redirect']);
+
+// Route to delete a URL (DELETE /api/v1/urls/{id})
+Route::delete('/api/v1/urls/{id}', [UrlController::class, 'destroy']);
+
+

@@ -1,0 +1,138 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Url",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://swagger.local"
+        }
+    ],
+    "paths": {
+        "/api/v1/urls": {
+            "get": {
+                "tags": [
+                    "URLs"
+                ],
+                "summary": "Get all URLs",
+                "operationId": "26ca8dc6a797a5d575d44431356486bb",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of results per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of URLs"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/v1/shorten": {
+            "post": {
+                "tags": [
+                    "URLs"
+                ],
+                "summary": "Shorten a URL",
+                "operationId": "221b371824e5323a95488256c95fddfe",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "original_url": {
+                                        "type": "string",
+                                        "format": "url"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "URL shortened successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/{shortened}": {
+            "get": {
+                "tags": [
+                    "URLs"
+                ],
+                "summary": "Redirect to the original URL",
+                "operationId": "66694949134a6b19863382c876c97199",
+                "parameters": [
+                    {
+                        "name": "shortened",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Redirect to original URL"
+                    },
+                    "404": {
+                        "description": "URL not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/urls/{id}": {
+            "delete": {
+                "tags": [
+                    "URLs"
+                ],
+                "summary": "Delete a URL",
+                "operationId": "191587788ca651e9928befe94dd264f9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "URL deleted successfully"
+                    },
+                    "404": {
+                        "description": "URL not found"
+                    }
+                }
+            }
+        }
+    }
+}
